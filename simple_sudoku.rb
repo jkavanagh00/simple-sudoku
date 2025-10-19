@@ -6,7 +6,7 @@ end
 
 board = initialise_board_array()
 
-def check_row?(board, y, num)
+def valid_row?(board, y, num)
     if board[y].include?(num)
         false
     else
@@ -14,7 +14,7 @@ def check_row?(board, y, num)
     end
 end
 
-def check_column?(board, x, num)
+def valid_column?(board, x, num)
     column = []
     9.times { |y| column.push(board[y][x]) }
     if column.include?(num)
@@ -24,7 +24,7 @@ def check_column?(board, x, num)
     end
 end
 
-def check_box?(board, x, y, num)
+def valid_box?(board, x, y, num)
     box = []
     top_left_x = (x / 3) * 3
     top_left_y = (y / 3) * 3
@@ -40,19 +40,19 @@ def check_box?(board, x, y, num)
     end
 end
 
-def check_move?(board, x, y, num)
-    check_row?(board, y, num) and check_column?(board, x, num) and check_box?(board, x, y, num)
+def valid_move?(board, x, y, num)
+    valid_row?(board, y, num) and valid_column?(board, x, num) and valid_box?(board, x, y, num)
 end
 
-def validate_move_input?(num)
+def valid_num?(num)
     num.is_a? Integer and num > 0 and num < 10
 end
 
-def validate_coordinate_input?(x, y)
+def valid_coordinates?(x, y)
     (x.is_a?(String) and x.match?(/^[A-I]$/)) and (y.is_a?(Integer) and y > 0 and y < 10)
 end
 
-def convert_coordinate_input(x, y)
+def convert_coordinates(x, y)
     x_axis = {
         "A" => 0,
         "B" => 1,
@@ -101,5 +101,3 @@ def display_board(board)
     # Bottom border
     puts "-------------------------"
 end
-
-display_board(board)
