@@ -35,21 +35,13 @@ class SudokuGame
     end
 
     def valid_row?(y, num)
-        if @board[y].include?(num)
-            false
-        else
-            true
-        end
+        !(@board[y].include?(num))
     end
 
     def valid_column?(x, num)
         column = []
         9.times { |y| column.push(@board[y][x]) }
-        if column.include?(num)
-            false
-        else
-            true
-        end
+        !(column.include?(num))
     end
 
     def valid_box?(x, y, num)
@@ -61,11 +53,7 @@ class SudokuGame
                 box.push(@board[y_index][x_index])
             end
         end
-        if box.include?(num)
-            false
-        else
-            true
-        end
+        !(box.include?(num))
     end
 
     def valid_num?(num)
