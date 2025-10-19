@@ -1,6 +1,6 @@
 def initialise_board_array()
     board = []
-    9.times { board.push(Array.new(9, "-")) }
+    9.times { board.push(Array.new(9, " ")) }
     return board
 end
 
@@ -76,19 +76,26 @@ def convert_coordinate_input(x, y)
 end
 
 def display_board(board)
+    # Top border
+    puts "------------------------"
+    
     board.each_with_index do |row, row_index|
         if row_index % 3 == 0 && row_index != 0
-            puts "------+-------+------"
+            puts "------------------------"
         end
 
+        print "|"  # Left border
         row.each_with_index do |cell, col_index|
             if col_index % 3 == 0 && col_index != 0
                 print "| "
             end
             print "#{cell} "
         end
-        puts
+        puts "|"  # Right border
     end
+    
+    # Bottom border
+    puts "------------------------"
 end
 
 display_board(board)
