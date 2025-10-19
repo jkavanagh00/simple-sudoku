@@ -47,3 +47,30 @@ end
 def validate_move_input(num)
     num.is_a? Integer and num > 0 and num < 10
 end
+
+def convert_coordinate_input(x, y)
+    x_axis = {
+        "A" => 0,
+        "B" => 1,
+        "C" => 2,
+        "D" => 3,
+        "E" => 4,
+        "F" => 5,
+        "G" => 6,
+        "H" => 7,
+        "I" => 8,
+    }
+
+    y_axis = {
+        1 => 0,
+        2 => 1,
+        3 => 2,
+        4 => 3,
+        5 => 4,
+        6 => 5,
+        7 => 6,
+        8 => 7,
+        9 => 8
+    }
+    [x_axis[x], y_axis[y]]
+end
