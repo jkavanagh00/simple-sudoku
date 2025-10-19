@@ -74,3 +74,21 @@ def convert_coordinate_input(x, y)
     }
     [x_axis[x], y_axis[y]]
 end
+
+def display_board(board)
+    board.each_with_index do |row, row_index|
+        if row_index % 3 == 0 && row_index != 0
+            puts "------+-------+------"
+        end
+
+        row.each_with_index do |cell, col_index|
+            if col_index % 3 == 0 && col_index != 0
+                print "| "
+            end
+            print "#{cell} "
+        end
+        puts
+    end
+end
+
+display_board(board)
