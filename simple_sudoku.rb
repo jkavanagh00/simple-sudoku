@@ -6,17 +6,17 @@ end
 
 board = initialise_board_array()
 
-def check_row(board, y_index, num)
-    if board[y_index].include?(num)
+def check_row(board, y, num)
+    if board[y].include?(num)
         false
     else
         true
     end
 end
 
-def check_column(board, x_index, num)
+def check_column(board, x, num)
     column = []
-    9.times { |y_index| column.push(board[y_index][x_index]) }
+    9.times { |y| column.push(board[y][x]) }
     if column.include?(num)
         false
     else
@@ -24,10 +24,10 @@ def check_column(board, x_index, num)
     end
 end
 
-def check_box(board, x_index, y_index, num)
+def check_box(board, x, y, num)
     box = []
-    top_left_x = (x_index / 3) * 3
-    top_left_y = (y_index / 3) * 3
+    top_left_x = (x / 3) * 3
+    top_left_y = (y / 3) * 3
     for x in top_left_x..top_left_x + 2
         for y in top_left_y..top_left_y + 2
             box.push(board[y][x])
