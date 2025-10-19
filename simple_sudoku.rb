@@ -43,3 +43,7 @@ end
 def check_move(board, x, y, num)
     check_row(board, y, num) and check_column(board, x, num) and check_box(board, x, y, num)
 end
+
+def validate_move_input(num)
+    num.is_a? Integer and num > 0 and num < 10
+end
