@@ -13,3 +13,13 @@ def check_row(arr, num)
         true
     end
 end
+
+def check_column(board, x_index, num)
+    column = []
+    9.times { |y_index| column.push(board[y_index][x_index]) }
+    if column.include?(num)
+        false
+    else
+        true
+    end
+end
