@@ -30,8 +30,18 @@ class SudokuGame
 
     def initialize_board()
         board = []
-        9.times { @board.push(Array.new(9, 0)) }
+        9.times { board.push(Array.new(9, 0)) }
         return board
+    end
+
+    def get_move
+        puts "Please select a column (A-I)"
+        x_coordinate = gets.chomp
+        puts "Please select a row (1-9)"
+        y_coordinate = gets.chomp
+        puts "Please enter your guess"
+        num = gets.chomp.to_i
+        return x_coordinate, y_coordinate, num
     end
 
     def valid_row?(y, num)
