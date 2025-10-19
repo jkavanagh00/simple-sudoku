@@ -1,6 +1,6 @@
 def initialise_board_array()
     board = []
-    9.times { board.push(Array.new(9, " ")) }
+    9.times { board.push(Array.new(9, 0)) }
     return board
 end
 
@@ -41,11 +41,15 @@ def check_box?(board, x, y, num)
 end
 
 def check_move?(board, x, y, num)
-    check_row(board, y, num) and check_column(board, x, num) and check_box(board, x, y, num)
+    check_row?(board, y, num) and check_column?(board, x, num) and check_box?(board, x, y, num)
 end
 
 def validate_move_input?(num)
     num.is_a? Integer and num > 0 and num < 10
+end
+
+def validate_coordinate_input?(x, y)
+    (x.is_a?(String) and x.match?(/^[A-I]$/)) and (y.is_a?(Integer) and y > 0 and y < 10)
 end
 
 def convert_coordinate_input(x, y)
@@ -89,7 +93,7 @@ def display_board(board)
             if col_index % 3 == 0 && col_index != 0
                 print "| "
             end
-            print "#{cell} "
+            print(cell != 0 ? "#{cell} " : "  ")
         end
         puts "|"  # Right border
     end
@@ -97,3 +101,5 @@ def display_board(board)
     # Bottom border
     puts "-------------------------"
 end
+
+display_board(board)
