@@ -97,5 +97,3 @@ def display_board(board)
     # Bottom border
     puts "------------------------"
 end
-
-display_board(board)
