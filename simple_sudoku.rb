@@ -6,8 +6,8 @@ end
 
 board = initialise_board_array()
 
-def check_row(arr, num)
-    if arr.include?(num)
+def check_row(board, y_index, num)
+    if board[y_index].include?(num)
         false
     else
         true
