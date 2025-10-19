@@ -39,3 +39,7 @@ def check_box(board, x, y, num)
         true
     end
 end
+
+def check_move(board, x, y, num)
+    check_row(board, y, num) and check_column(board, x, num) and check_box(board, x, y, num)
+end
