@@ -28,9 +28,9 @@ def check_box(board, x, y, num)
     box = []
     top_left_x = (x / 3) * 3
     top_left_y = (y / 3) * 3
-    for x in top_left_x..top_left_x + 2
-        for y in top_left_y..top_left_y + 2
-            box.push(board[y][x])
+    for x_index in top_left_x..top_left_x + 2
+        for y_index in top_left_y..top_left_y + 2
+            box.push(board[y_index][x_index])
         end
     end
     if box.include?(num)
