@@ -77,14 +77,14 @@ end
 
 def display_board(board)
     # Top border
-    puts "------------------------"
+    puts "-------------------------"
     
     board.each_with_index do |row, row_index|
         if row_index % 3 == 0 && row_index != 0
-            puts "------------------------"
+            puts "-------------------------"
         end
 
-        print "|"  # Left border
+        print "| "  # Left border
         row.each_with_index do |cell, col_index|
             if col_index % 3 == 0 && col_index != 0
                 print "| "
@@ -95,5 +95,5 @@ def display_board(board)
     end
     
     # Bottom border
-    puts "------------------------"
+    puts "-------------------------"
 end
