@@ -57,7 +57,7 @@ class SudokuGame
         puts "-------------------------"
     end
 
-    def valid_move?(arr, num)
+    def correct_move?(arr, num)
         x, y = arr
         @solved_board[y][x] == num
     end
@@ -81,7 +81,7 @@ class SudokuGame
             num = gets.chomp.to_i
             converted_coords = convert_coordinates(coordinates)
 
-            if valid_coordinates?(converted_coords) and valid_num?(num) and valid_move?(converted_coords, num)
+            if valid_coordinates?(converted_coords) and valid_num?(num) and correct_move?(converted_coords, num)
                 update_board(converted_coords, num)
                 break
             elsif !(valid_coordinates?(converted_coords)) and !(valid_num?(num))
@@ -90,23 +90,23 @@ class SudokuGame
                 puts "Invalid coordinates entered. Please try again, choosing only a character between A & I and a number between 1 & 9."
             elsif !(valid_num?(num))
                 puts "Invalid guess entered. Please try again, choosing only a number between 1 & 9."
-            elsif !valid_move?(converted_coords, num)
+            elsif !correct_move?(converted_coords, num)
                 puts "You made a mistake!"
             end
         end
     end
 
-    def valid_row?(y, num)
+    def correct_row?(y, num)
         !(@board[y].include?(num))
     end
 
-    def valid_column?(x, num)
+    def correct_column?(x, num)
         column = []
         9.times { |y| column.push(@board[y][x]) }
         !(column.include?(num))
     end
 
-    def valid_box?(x, y, num)
+    def correct_box?(x, y, num)
         box = []
         top_left_x = (x / 3) * 3
         top_left_y = (y / 3) * 3
