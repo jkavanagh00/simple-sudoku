@@ -103,8 +103,3 @@ class SudokuGame
         [x_axis[str_arr[0]], y_axis[str_arr[1]]]
     end
 end
-
-test = SudokuGame.new
-puts test.convert_coordinates("a   3")
-puts test.convert_coordinates("q7")
-puts test.convert_coordinates("G6")
