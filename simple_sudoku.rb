@@ -70,8 +70,9 @@ class SudokuGame
         num.is_a? Integer and num > 0 and num < 10
     end
 
-    def valid_coordinates?(x, y)
-        (x.is_a?(String) and x.match?(/^[A-I]$/)) and (y.is_a?(Integer) and y > 0 and y < 10)
+    def valid_coordinates?(arr)
+        x, y = arr
+        x.is_a?(Integer) and x > -1 and x < 9 and y.is_a?(Integer) and y > -1 and y < 9
     end
 
     def convert_coordinates(str)
