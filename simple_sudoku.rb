@@ -13,7 +13,7 @@ class SudokuGame
     [4, 2, 9, 0, 3, 0, 0, 0, 0]
     ]
 
-            @solved_board = [    
+        @solved_board = [    
     [8, 3, 2, 1, 7, 5, 4, 9, 6],
     [1, 9, 6, 2, 4, 8, 7, 5, 3],
     [7, 4, 5, 3, 6, 9, 2, 1, 8],
@@ -26,7 +26,7 @@ class SudokuGame
     ]
     end
 
-    def valid_win?
+    def check_win?
         @win = true
         @board.each do |arr|
             if arr.sum != 45 
@@ -80,7 +80,6 @@ class SudokuGame
             puts "Please enter your guess (1-9)"
             num = gets.chomp.to_i
             converted_coords = convert_coordinates(coordinates)
-
             if valid_coordinates?(converted_coords) and valid_num?(num) and correct_move?(converted_coords, num)
                 update_board(converted_coords, num)
                 break
@@ -91,7 +90,7 @@ class SudokuGame
             elsif !(valid_num?(num))
                 puts "Invalid guess entered. Please try again, choosing only a number between 1 & 9."
             elsif !correct_move?(converted_coords, num)
-                puts explain_mistake(convert_coordinates, num)
+                puts explain_mistake(converted_coords, num)
             end
         end
     end
@@ -175,4 +174,11 @@ class SudokuGame
         }
         [x_axis[str_arr[0]], y_axis[str_arr[1]]]
     end
+end
+
+game = SudokuGame.new
+
+while !game.check_win? do
+    game.display_board
+    game.get_move
 end
