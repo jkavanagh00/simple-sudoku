@@ -74,7 +74,9 @@ class SudokuGame
         (x.is_a?(String) and x.match?(/^[A-I]$/)) and (y.is_a?(Integer) and y > 0 and y < 10)
     end
 
-    def convert_coordinates(x, y)
+    def convert_coordinates(str)
+        str_arr = str.upcase.gsub(/\s+/, "").split("")
+
         x_axis = {
             "A" => 0,
             "B" => 1,
@@ -88,16 +90,21 @@ class SudokuGame
         }
 
         y_axis = {
-            1 => 0,
-            2 => 1,
-            3 => 2,
-            4 => 3,
-            5 => 4,
-            6 => 5,
-            7 => 6,
-            8 => 7,
-            9 => 8
+            "1" => 0,
+            "2" => 1,
+            "3" => 2,
+            "4" => 3,
+            "5" => 4,
+            "6" => 5,
+            "7" => 6,
+            "8" => 7,
+            "9" => 8
         }
-        [x_axis[x], y_axis[y]]
+        [x_axis[str_arr[0]], y_axis[str_arr[1]]]
     end
 end
+
+test = SudokuGame.new
+puts test.convert_coordinates("a   3")
+puts test.convert_coordinates("q7")
+puts test.convert_coordinates("G6")

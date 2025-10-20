@@ -1,0 +1,5 @@
+{
+  "rubyLsp.rubyExecutablePath": "C:\\Ruby34-x64\\bin\\ruby.exe",
+  "ruby.pathToBundler": "C:\\Ruby34-x64\\bin\\bundle.bat",
+  "ruby.interpreter.commandPath": "C:\\Ruby34-x64\\bin\\ruby.exe"
+}
