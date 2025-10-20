@@ -193,3 +193,4 @@ while !game.check_win? do
     game.display_board
     game.get_move
 end
+puts "You win! Congratulations!"
