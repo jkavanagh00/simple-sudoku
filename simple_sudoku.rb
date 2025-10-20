@@ -35,13 +35,11 @@ class SudokuGame
     end
 
     def get_move
-        puts "Please select a column (A-I)"
-        x_coordinate = gets.chomp
-        puts "Please select a row (1-9)"
-        y_coordinate = gets.chomp
+        puts "Please select a square (A-I, 1-9)"
+        coordinates = gets.chomp
         puts "Please enter your guess"
         num = gets.chomp.to_i
-        return x_coordinate, y_coordinate, num
+        return coordinates, num
     end
 
     def valid_row?(y, num)
