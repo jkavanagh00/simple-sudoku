@@ -143,15 +143,17 @@ class SudokuGame
         if !correct_column?(x, num) then result.push("column") end
         if !correct_box?(x, y, num) then result.push("box") end
         
+        mistake_info = mistake_limit > 0 ? " Total mistakes: #{mistakes}/#{mistake_limit}." : ""
+        
         case result.length
             when 0
-                "You made a mistake!. Total mistakes: #{@mistakes}/#{@mistake_limit}."
+                "You made a mistake!#{mistake_info}"
             when 1
-                "You made a mistake! There is already a #{num} in this #{result.first}. Total mistakes: #{@mistakes}/#{@mistake_limit}."
+                "You made a mistake! There is already a #{num} in this #{result.first}.#{mistake_info}"
             when 2
-                "You made a mistake! There is already a #{num} in this #{result.join(' and ')}. Total mistakes: #{@mistakes}/#{@mistake_limit}."
+                "You made a mistake! There is already a #{num} in this #{result.join(' and ')}.#{mistake_info}"
             else
-                "You made a mistake! There is already a #{num} in this #{result[0..-2].join(', ')} and #{result.last}. Total mistakes: #{@mistakes}/#{@mistake_limit}."
+                "You made a mistake! There is already a #{num} in this #{result[0..-2].join(', ')} and #{result.last}.#{mistake_info}"
         end
     end
 
