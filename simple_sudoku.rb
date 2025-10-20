@@ -24,7 +24,8 @@ class SudokuGame
         puts "-------------------------"
     end
 
-    def valid_move?(x, y, num)
+    def valid_move?(arr, num)
+        x, y = arr
         valid_row?(y, num) and valid_column?(x, num) and valid_box?(x, y, num)
     end
 
