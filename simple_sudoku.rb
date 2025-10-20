@@ -45,6 +45,11 @@ class SudokuGame
         return board
     end
 
+    def update_board(arr, num)
+        x, y = arr
+        @board[y][x] = num
+    end
+
     def get_move
         loop do
             puts "Please select a square (A-I, 1-9)"
@@ -54,7 +59,8 @@ class SudokuGame
             converted_coords = convert_coordinates(coordinates)
 
             if valid_coordinates?(converted_coords) and valid_num?(num) and valid_move?(converted_coords, num)
-                return coordinates, num
+                update_board(converted_coords, num)
+                break
             elsif !(valid_coordinates?(converted_coords)) and !(valid_num?(num))
                 puts "Invalid coordinates and guess entered. Please try again, choosing only a character between A & I and a number between 1 & 9 as your coordinates and then another number between 1 & 9 as your guess."
             elsif !(valid_coordinates?(converted_coords))
@@ -128,7 +134,3 @@ class SudokuGame
         [x_axis[str_arr[0]], y_axis[str_arr[1]]]
     end
 end
-
-test = SudokuGame.new
-test.display_board
-test.get_move
