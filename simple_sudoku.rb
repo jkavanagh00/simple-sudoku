@@ -14,6 +14,17 @@ class SudokuGame
     ]
     end
 
+    def valid_win?
+        @win = true
+        @board.each do |arr|
+            if arr.sum != 45 
+                @win = false
+                break
+            end
+        end
+        return @win  
+    end
+
     def display_board
         puts "-------------------------"
         
