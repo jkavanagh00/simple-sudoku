@@ -38,14 +38,15 @@ class SudokuGame
     end
 
     def display_board
-        puts "-------------------------"
+        puts "   A B C   D E F   G H I"
+        puts " -------------------------"
         
         @board.each_with_index do |row, row_index|
             if row_index % 3 == 0 && row_index != 0
-                puts "-------------------------"
+                puts " -------------------------"
             end
 
-            print "| " 
+            print "#{row_index + 1}| " 
             row.each_with_index do |cell, col_index|
                 if col_index % 3 == 0 && col_index != 0
                     print "| "
@@ -54,7 +55,7 @@ class SudokuGame
             end
             puts "|"  
         end
-        puts "-------------------------"
+        puts " -------------------------"
     end
 
     def correct_move?(arr, num)
