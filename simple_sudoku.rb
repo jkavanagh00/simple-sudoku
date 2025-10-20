@@ -46,11 +46,21 @@ class SudokuGame
     end
 
     def get_move
-        puts "Please select a square (A-I, 1-9)"
-        coordinates = gets.chomp
-        puts "Please enter your guess"
-        num = gets.chomp.to_i
-        return coordinates, num
+        loop do
+            puts "Please select a square (A-I, 1-9)"
+            coordinates = gets.chomp
+            puts "Please enter your guess (1-9)"
+            num = gets.chomp.to_i
+            
+            converted_coords = convert_coordinates(coordinates)
+            if valid_coordinates?(converted_coords) and valid_num?(num)
+                return coordinates, num
+            elsif !(valid_coordinates?(converted_coords))
+                puts "Invalid coordinates entered. Please try again, choosing only a character between A & I and a number between 1 & 9."
+            elsif !(valid_num?(num))
+                puts "Invalid guess entered. Please try again, choosing only a number between 1 & 9."
+            end
+        end
     end
 
     def valid_row?(y, num)
@@ -80,6 +90,7 @@ class SudokuGame
     end
 
     def valid_coordinates?(arr)
+        return false if arr.nil? || arr.include?(nil)
         x, y = arr
         x.is_a?(Integer) and x > -1 and x < 9 and y.is_a?(Integer) and y > -1 and y < 9
     end
@@ -113,3 +124,7 @@ class SudokuGame
         [x_axis[str_arr[0]], y_axis[str_arr[1]]]
     end
 end
+
+test = SudokuGame.new
+test.display_board
+test.get_move
