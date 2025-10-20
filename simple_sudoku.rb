@@ -41,7 +41,7 @@ class SudokuGame
     end
 
     def check_lose?
-        @mistake_limit > 0 and @mistakes > @mistake_limit  
+        @mistake_limit > 0 and @mistakes == @mistake_limit  
     end
 
     def get_mistake_limit
@@ -124,6 +124,10 @@ class SudokuGame
             elsif !correct_move?(converted_coords, num)
                 @mistakes += 1
                 puts explain_mistake(converted_coords, num)
+                if check_lose?
+                    puts "You've made one too many mistakes, you lose!"
+                    return :game_over
+                end
             end
         end
     end
@@ -137,13 +141,13 @@ class SudokuGame
         
         case result.length
             when 0
-                "You made a mistake!"
+                "You made a mistake!. Total mistakes: #{@mistakes}/#{@mistake_limit}."
             when 1
-                "You made a mistake! There is already a #{num} in this #{result.first}"
+                "You made a mistake! There is already a #{num} in this #{result.first}. Total mistakes: #{@mistakes}/#{@mistake_limit}."
             when 2
-                "You made a mistake! There is already a #{num} in this #{result.join(' and ')}"
+                "You made a mistake! There is already a #{num} in this #{result.join(' and ')}. Total mistakes: #{@mistakes}/#{@mistake_limit}."
             else
-                "You made a mistake! There is already a #{num} in this #{result[0..-2].join(', ')} and #{result.last}"
+                "You made a mistake! There is already a #{num} in this #{result[0..-2].join(', ')} and #{result.last}. Total mistakes: #{@mistakes}/#{@mistake_limit}."
         end
     end
 
@@ -222,8 +226,15 @@ $$ |  $$ |\\$$$$$$  |$$$$$$$  | $$$$$$  |$$ | \\$$\\ \\$$$$$$  |
 Welcome to Ruboku, please employ logic responsibly
 "
 game.get_mistake_limit
-while !game.check_win? do
-    game.display_board
-    game.get_move
+loop do
+    if game.check_win?
+        puts "You win! Congratulations!"
+        break
+    else
+        game.display_board
+        result = game.get_move
+        if result == :game_over
+            break
+        end
+    end
 end
-puts "You win! Congratulations!"
