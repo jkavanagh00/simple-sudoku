@@ -44,6 +44,30 @@ class SudokuGame
         @mistake_limit > 0 and @mistakes > @mistake_limit  
     end
 
+    def get_mistake_limit
+        loop do
+            puts "How many mistakes would you like to be able to make?"
+            puts "(enter 0 for unlimited mistakes)"
+            input = gets.chomp
+        
+            if input.match?(/^\d+$/)  # check for non-numerical characters
+                mistakes = input.to_i
+                
+                if mistakes > 0
+                    @mistake_limit = mistakes
+                    puts "You will be able to make #{mistakes} mistakes before losing."
+                    break
+                elsif mistakes == 0
+                    @mistake_limit = 0
+                    puts "You will be able to make unlimited mistakes."
+                    break
+                end
+            else
+                puts "Invalid input. Please enter a positive whole number."
+            end
+        end
+    end
+
     def display_board
         puts "   A B C   D E F   G H I"
         puts " -------------------------"
@@ -197,6 +221,7 @@ $$ |  $$ |\\$$$$$$  |$$$$$$$  | $$$$$$  |$$ | \\$$\\ \\$$$$$$  |
 \\__|  \\__| \\______/ \\_______/  \\______/ \\__|  \\__| \\______/ 
 Welcome to Ruboku, please employ logic responsibly
 "
+game.get_mistake_limit
 while !game.check_win? do
     game.display_board
     game.get_move
