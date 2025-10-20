@@ -53,7 +53,11 @@ class SudokuGame
             if input.match?(/^\d+$/)  # check for non-numerical characters
                 mistakes = input.to_i
                 
-                if mistakes > 0
+                if mistakes == 1
+                    @mistake_limit = mistakes
+                    puts "You will be able to make 1 mistake before losing."
+                    break
+                elsif mistakes > 1
                     @mistake_limit = mistakes
                     puts "You will be able to make #{mistakes} mistakes before losing."
                     break
@@ -223,8 +227,9 @@ $$  __$$< $$ |  $$ |$$  __$$\\ $$ |  $$ |$$  $$<   $$ |  $$ |
 $$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |\\$$\\  $$ |  $$ |
 $$ |  $$ |\\$$$$$$  |$$$$$$$  | $$$$$$  |$$ | \\$$\\ \\$$$$$$  |
 \\__|  \\__| \\______/ \\_______/  \\______/ \\__|  \\__| \\______/ 
-Welcome to Ruboku, please employ logic responsibly
+     Welcome to Ruboku, please employ logic responsibly
 "
+puts " "
 game.get_mistake_limit
 loop do
     if game.check_win?
