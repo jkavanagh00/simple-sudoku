@@ -1,7 +1,17 @@
 class SudokuGame
 
     def initialize
-        @board = initialize_board
+        @board = [    
+    [0, 0, 2, 1, 7, 0, 0, 0, 6],
+    [0, 9, 0, 0, 0, 8, 0, 5, 3],
+    [0, 4, 0, 3, 0, 0, 0, 1, 8],
+    [0, 0, 0, 8, 0, 0, 6, 4, 0],
+    [9, 8, 0, 0, 2, 7, 0, 0, 1],
+    [0, 0, 3, 0, 9, 0, 0, 2, 7],
+    [5, 0, 1, 9, 0, 0, 0, 7, 0],
+    [0, 7, 0, 4, 5, 1, 9, 6, 0],
+    [4, 2, 9, 0, 3, 0, 0, 0, 0]
+    ]
     end
 
     def display_board
@@ -75,7 +85,7 @@ class SudokuGame
     end
 
     def convert_coordinates(str)
-        str_arr = str.upcase.gsub(/\s+/, "").split("")
+        str_arr = str.upcase.gsub(/\s+/, "").split("").sort.reverse
 
         x_axis = {
             "A" => 0,
@@ -86,7 +96,7 @@ class SudokuGame
             "F" => 5,
             "G" => 6,
             "H" => 7,
-            "I" => 8,
+            "I" => 8
         }
 
         y_axis = {
