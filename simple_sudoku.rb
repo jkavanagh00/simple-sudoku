@@ -91,8 +91,27 @@ class SudokuGame
             elsif !(valid_num?(num))
                 puts "Invalid guess entered. Please try again, choosing only a number between 1 & 9."
             elsif !correct_move?(converted_coords, num)
-                puts "You made a mistake!"
+                puts explain_mistake(convert_coordinates, num)
             end
+        end
+    end
+
+    def explain_mistake(arr, num)
+        result = []
+        x, y = arr
+        if !correct_row?(y, num) then result.push("row") end
+        if !correct_column?(x, num) then result.push("column") end
+        if !correct_box?(x, y, num) then result.push("box") end
+        
+        case result.length
+            when 0
+                "You made a mistake!"
+            when 1
+                "You made a mistake! There is already a #{num} in this #{result.first}"
+            when 2
+                "You made a mistake! There is already a #{num} in this #{result.join(' and ')}"
+            else
+                "You made a mistake! There is already a #{num} in this #{result[0..-2].join(', ')} and #{result.last}"
         end
     end
 
