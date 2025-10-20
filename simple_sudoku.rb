@@ -51,14 +51,18 @@ class SudokuGame
             coordinates = gets.chomp
             puts "Please enter your guess (1-9)"
             num = gets.chomp.to_i
-            
             converted_coords = convert_coordinates(coordinates)
-            if valid_coordinates?(converted_coords) and valid_num?(num)
+
+            if valid_coordinates?(converted_coords) and valid_num?(num) and valid_move?(converted_coords, num)
                 return coordinates, num
+            elsif !(valid_coordinates?(converted_coords)) and !(valid_num?(num))
+                puts "Invalid coordinates and guess entered. Please try again, choosing only a character between A & I and a number between 1 & 9 as your coordinates and then another number between 1 & 9 as your guess."
             elsif !(valid_coordinates?(converted_coords))
                 puts "Invalid coordinates entered. Please try again, choosing only a character between A & I and a number between 1 & 9."
             elsif !(valid_num?(num))
                 puts "Invalid guess entered. Please try again, choosing only a number between 1 & 9."
+            elsif !valid_move?(converted_coords, num)
+                puts "You made a mistake!"
             end
         end
     end
