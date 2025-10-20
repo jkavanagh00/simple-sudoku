@@ -26,6 +26,7 @@ class SudokuGame
     ]
 
         @mistakes = 0
+        @mistake_limit = 0
     end
 
     def check_win?
@@ -37,6 +38,10 @@ class SudokuGame
             end
         end
         return @win  
+    end
+
+    def check_lose?
+        @mistake_limit > 0 and @mistakes > @mistake_limit  
     end
 
     def display_board
