@@ -24,6 +24,8 @@ class SudokuGame
     [3, 7, 8, 4, 5, 1, 9, 6, 2],
     [4, 2, 9, 7, 3, 6, 1, 8, 5]
     ]
+
+        @mistakes = 0
     end
 
     def check_win?
@@ -91,6 +93,7 @@ class SudokuGame
             elsif !(valid_num?(num))
                 puts "Invalid guess entered. Please try again, choosing only a number between 1 & 9."
             elsif !correct_move?(converted_coords, num)
+                @mistakes += 1
                 puts explain_mistake(converted_coords, num)
             end
         end
