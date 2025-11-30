@@ -1,0 +1,24 @@
+{
+  "name": "simple-sudoku",
+  "version": "1.0.0",
+  "description": "to be implemented:\r   - random board generation",
+  "main": "simple_sudoku.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkavanagh00/simple-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkavanagh00/simple-sudoku/issues"
+  },
+  "homepage": "https://github.com/jkavanagh00/simple-sudoku#readme",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "type": "module"
+}
