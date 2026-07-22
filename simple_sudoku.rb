@@ -29,6 +29,24 @@ class SudokuGame
         @mistake_limit = 0
     end
 
+    def play
+        get_mistake_limit
+        loop do
+            if check_win?
+                puts "You win! Congratulations!"
+                break
+            else
+                display_board
+                result = get_move
+                if result == :game_over
+                    break
+                end
+            end
+        end
+    end
+    
+    private
+
     def check_win?
         @win = true
         @board.each do |arr|
@@ -143,7 +161,7 @@ class SudokuGame
         if !correct_column?(x, num) then result.push("column") end
         if !correct_box?(x, y, num) then result.push("box") end
         
-        mistake_info = mistake_limit > 0 ? " Total mistakes: #{mistakes}/#{mistake_limit}." : ""
+        mistake_info = @mistake_limit > 0 ? " Total mistakes: #{@mistakes}/#{@mistake_limit}." : ""
         
         case result.length
             when 0
@@ -232,16 +250,4 @@ $$ |  $$ |\\$$$$$$  |$$$$$$$  | $$$$$$  |$$ | \\$$\\ \\$$$$$$  |
      Welcome to Ruboku, please employ logic responsibly
 "
 puts " "
-game.get_mistake_limit
-loop do
-    if game.check_win?
-        puts "You win! Congratulations!"
-        break
-    else
-        game.display_board
-        result = game.get_move
-        if result == :game_over
-            break
-        end
-    end
-end
+game.play
